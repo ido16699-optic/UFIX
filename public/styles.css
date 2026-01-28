@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+header {
+    text-align: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #667eea;
+}
+
+h1 {
+    color: #667eea;
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.tagline {
+    color: #666;
+    font-size: 1.2em;
+}
+
+nav {
+    margin-top: 20px;
+}
+
+.nav-btn {
+    margin: 0 10px;
+    padding: 10px 30px;
+    border: none;
+    background: #667eea;
+    color: white;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s;
+}
+
+.nav-btn:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+.form-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 30px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.form-container h2 {
+    color: #667eea;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+input, select, textarea {
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 1em;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus, textarea:focus {
+    outline: none;
+    border-color: #667eea;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button {
+    padding: 12px;
+    border: none;
+    background: #667eea;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: all 0.3s;
+}
+
+button:hover {
+    background: #764ba2;
+    transform: translateY(-2px);
+}
+
+button[type="button"] {
+    background: #999;
+}
+
+button[type="button"]:hover {
+    background: #777;
+}
+
+label {
+    font-weight: bold;
+    color: #333;
+}
+
+.dashboard {
+    margin-top: 20px;
+}
+
+.section {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #f9f9f9;
+    border-radius: 10px;
+}
+
+.section h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.job-card, .request-card, .offer-card {
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.job-card h4, .request-card h4, .offer-card h4 {
+    color: #667eea;
+    margin-bottom: 10px;
+}
+
+.job-card p, .request-card p, .offer-card p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 15px;
+    font-size: 0.85em;
+    font-weight: bold;
+    margin: 5px 5px 5px 0;
+}
+
+.badge.open {
+    background: #4caf50;
+    color: white;
+}
+
+.badge.in_progress {
+    background: #ff9800;
+    color: white;
+}
+
+.badge.completed {
+    background: #2196f3;
+    color: white;
+}
+
+.badge.cancelled {
+    background: #f44336;
+    color: white;
+}
+
+.badge.pending {
+    background: #ffc107;
+    color: #333;
+}
+
+.badge.accepted {
+    background: #4caf50;
+    color: white;
+}
+
+.badge.rejected {
+    background: #f44336;
+    color: white;
+}
+
+.badge.asap {
+    background: #f44336;
+    color: white;
+}
+
+.badge.scheduled {
+    background: #2196f3;
+    color: white;
+}
+
+.offers-list {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.offer-item {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-accept {
+    background: #4caf50;
+}
+
+.btn-reject {
+    background: #f44336;
+}
+
+.btn-complete {
+    background: #2196f3;
+}
+
+.btn-small {
+    padding: 8px 15px;
+    font-size: 0.9em;
+}
+
+#offerModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 500px;
+    width: 90%;
+}
+
+.modal-content h3 {
+    color: #667eea;
+    margin-bottom: 20px;
+}
+
+.close-modal {
+    float: right;
+    font-size: 1.5em;
+    cursor: pointer;
+    color: #999;
+}
+
+.close-modal:hover {
+    color: #333;
+}

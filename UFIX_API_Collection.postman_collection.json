@@ -1,0 +1,332 @@
+{
+  "info": {
+    "name": "UFIX API Collection",
+    "description": "Complete API collection for UFIX - Uber for Handymen platform",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Authentication",
+      "item": [
+        {
+          "name": "Register Customer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"John Customer\",\n  \"email\": \"customer@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"+1234567890\",\n  \"userType\": \"customer\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [-74.0060, 40.7128],\n    \"address\": \"123 Main St, New York, NY 10001\"\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Register Handyman",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Mike Handyman\",\n  \"email\": \"handyman@example.com\",\n  \"password\": \"password123\",\n  \"phone\": \"+0987654321\",\n  \"userType\": \"handyman\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [-74.0050, 40.7130],\n    \"address\": \"456 Worker Ave, New York, NY 10002\"\n  },\n  \"skills\": [\"plumbing\", \"electrical\", \"carpentry\"]\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "register"]
+            }
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"customer@example.com\",\n  \"password\": \"password123\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Repair Requests",
+      "item": [
+        {
+          "name": "Create Repair Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{customerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Fix leaking kitchen faucet\",\n  \"description\": \"The kitchen faucet has been leaking for 2 days. Water drips continuously even when fully closed.\",\n  \"category\": \"plumbing\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [-74.0060, 40.7128],\n    \"address\": \"123 Main St, New York, NY 10001\"\n  },\n  \"urgency\": \"asap\",\n  \"budget\": {\n    \"min\": 50,\n    \"max\": 150\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/repair-requests",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "repair-requests"]
+            }
+          }
+        },
+        {
+          "name": "Create Scheduled Repair Request",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{customerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"title\": \"Install ceiling fan\",\n  \"description\": \"Need to install a new ceiling fan in the living room\",\n  \"category\": \"electrical\",\n  \"location\": {\n    \"type\": \"Point\",\n    \"coordinates\": [-74.0060, 40.7128],\n    \"address\": \"123 Main St, New York, NY 10001\"\n  },\n  \"urgency\": \"scheduled\",\n  \"scheduledDate\": \"2026-02-15T14:00:00Z\",\n  \"budget\": {\n    \"min\": 100,\n    \"max\": 200\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/repair-requests",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "repair-requests"]
+            }
+          }
+        },
+        {
+          "name": "Get All Repair Requests",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/repair-requests",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "repair-requests"]
+            }
+          }
+        },
+        {
+          "name": "Get Repair Request with Offers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/repair-requests/{{requestId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "repair-requests", "{{requestId}}"]
+            }
+          }
+        },
+        {
+          "name": "Accept Offer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{customerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"offerId\": \"{{offerId}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/repair-requests/{{requestId}}/accept-offer",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "repair-requests", "{{requestId}}", "accept-offer"]
+            }
+          }
+        },
+        {
+          "name": "Update Status to Completed",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{customerToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"completed\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/repair-requests/{{requestId}}/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "repair-requests", "{{requestId}}", "status"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Offers",
+      "item": [
+        {
+          "name": "Create Offer",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{handymanToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"repairRequestId\": \"{{requestId}}\",\n  \"price\": 100,\n  \"estimatedDuration\": \"2 hours\",\n  \"message\": \"I have 10 years of experience in plumbing. I can fix this issue quickly and professionally.\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/offers",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "offers"]
+            }
+          }
+        },
+        {
+          "name": "Get My Offers",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{handymanToken}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/offers/my-offers",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "offers", "my-offers"]
+            }
+          }
+        },
+        {
+          "name": "Update Offer",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Authorization",
+                "value": "Bearer {{handymanToken}}"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"price\": 120,\n  \"estimatedDuration\": \"2.5 hours\",\n  \"message\": \"Updated estimate after reviewing the details\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/offers/{{offerId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "offers", "{{offerId}}"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Health Check",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{baseUrl}}/api/health",
+          "host": ["{{baseUrl}}"],
+          "path": ["api", "health"]
+        }
+      }
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000",
+      "type": "string"
+    },
+    {
+      "key": "customerToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "handymanToken",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "token",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "requestId",
+      "value": "",
+      "type": "string"
+    },
+    {
+      "key": "offerId",
+      "value": "",
+      "type": "string"
+    }
+  ]
+}
