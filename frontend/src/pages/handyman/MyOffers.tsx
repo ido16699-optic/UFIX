@@ -1,0 +1,8 @@
+export default function MyOffers() {
+  return (
+    <div>
+      <h1 className="text-2xl font-bold text-gray-900 mb-6">My Offers</h1>
+      <p className="text-gray-500">Track your offers and their status.</p>
+    </div>
+  );
+}
