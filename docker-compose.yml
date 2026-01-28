@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  mongodb:
+    image: mongo:6.0
+    container_name: ufix-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_DATABASE: ufix
+    volumes:
+      - mongodb_data:/data/db
+    networks:
+      - ufix-network
+
+  app:
+    build: .
+    container_name: ufix-app
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - MONGODB_URI=mongodb://mongodb:27017/ufix
+      - JWT_SECRET=change-this-to-a-secure-secret-key
+      - PORT=3000
+      - NODE_ENV=production
+    depends_on:
+      - mongodb
+    networks:
+      - ufix-network
+
+volumes:
+  mongodb_data:
+    driver: local
+
+networks:
+  ufix-network:
+    driver: bridge
